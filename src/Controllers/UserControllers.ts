@@ -71,6 +71,28 @@ export const DeleteUser = async (req: Request, res: Response) => {
     });
   }
 };
+export const UpdateUser = async (req: Request, res: Response) => {
+  try {
+    const { username } = req.body;
+    const user = await UserModels.findByIdAndUpdate(
+      req.params.userID,
+      {
+        username,
+      },
+      { new: true }
+    );
+
+    return res.status(200).json({
+      message: "Successfully deleted this user",
+      data: user,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      message: "Error occured in deleting this User",
+      data: error,
+    });
+  }
+};
 
 export const LoginUser = async (req: Request, res: Response) => {
   try {
