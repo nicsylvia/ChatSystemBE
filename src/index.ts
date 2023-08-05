@@ -5,6 +5,7 @@ import userRouter from "./Router/Userrouter";
 import FriendsRouter from "./Router/FriendsRoute";
 import mongoose from "mongoose";
 import ChatsRouter from "./Router/ChatRouter";
+import ChatMessageRouter from "./Router/ChatMessageRouter";
 
 const app: Application = express();
 
@@ -17,6 +18,7 @@ app.use(express.json());
 app.use("/api/users", userRouter);
 app.use("/api/friends", FriendsRouter);
 app.use("/api/chats", ChatsRouter);
+app.use("/api/message", ChatMessageRouter);
 
 app.get("/", (req: Request, res: Response) => {
   try {
