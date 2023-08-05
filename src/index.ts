@@ -13,8 +13,8 @@ const DBURL = "mongodb://0.0.0.0:27017/ChatSystem";
 
 app.use(cors());
 app.use(express.json());
-app.use("api/users", userRouter);
-app.use("api/friends", FriendsRouter);
+app.use("/api/users", userRouter);
+app.use("/api/friends", FriendsRouter);
 
 app.get("/", (req: Request, res: Response) => {
   try {

@@ -34,3 +34,22 @@ export const CreateChat = async (req: Request, res: Response) => {
     });
   }
 };
+export const GetChat = async (req: Request, res: Response) => {
+  try {
+    const { userID, friendID } = req.params;
+
+    const chat = await ChatModels.create({
+      members: [userID, friendID],
+    });
+
+    return res.status(400).json({
+      message: "Chats established between Friends",
+      data: chat,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      message: "Error occured",
+      data: error,
+    });
+  }
+};
