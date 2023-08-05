@@ -4,6 +4,7 @@ import cors from "cors";
 import userRouter from "./Router/Userrouter";
 import FriendsRouter from "./Router/FriendsRoute";
 import mongoose from "mongoose";
+import ChatsRouter from "./Router/ChatRouter";
 
 const app: Application = express();
 
@@ -15,6 +16,7 @@ app.use(cors());
 app.use(express.json());
 app.use("/api/users", userRouter);
 app.use("/api/friends", FriendsRouter);
+app.use("/api/chats", ChatsRouter);
 
 app.get("/", (req: Request, res: Response) => {
   try {

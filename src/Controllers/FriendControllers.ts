@@ -11,10 +11,10 @@ export const BeFriends = async (req: Request, res: Response) => {
     const user: any = await UserModels.findById(userID);
 
     if (user && friend) {
-      friend.friends?.push(new mongoose.Types.ObjectId(userID));
+      friend.friends?.push(userID);
       friend.save();
 
-      user.friends?.push(new mongoose.Types.ObjectId(friendID));
+      user.friends?.push(friendID);
       user.save();
 
       return res.status(201).json({
@@ -41,10 +41,10 @@ export const Unfriend = async (req: Request, res: Response) => {
     const user: any = await UserModels.findById(userID);
 
     if (user && friend) {
-      friend.friends?.pull(new mongoose.Types.ObjectId(userID));
+      friend.friends?.pull(userID);
       friend.save();
 
-      user.friends?.pull(new mongoose.Types.ObjectId(friendID));
+      user.friends?.pull(friendID);
       user.save();
 
       return res.status(201).json({

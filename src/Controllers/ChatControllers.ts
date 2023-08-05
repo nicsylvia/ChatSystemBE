@@ -10,8 +10,8 @@ export const CreateChat = async (req: Request, res: Response) => {
     const friend: any = await UserModels.findById(friendID);
     const user: any = await UserModels.findById(userID);
 
-    const CheckUser = user.friends.some((el) => el === friendID);
-    const CheckFriend = friend.friends.some((el) => el === userID);
+    const CheckUser = user.friends.some((el: string) => el === friendID);
+    const CheckFriend = friend.friends.some((el: string) => el === userID);
 
     if (CheckFriend && CheckUser) {
       const chat = await ChatModels.create({
