@@ -1,6 +1,7 @@
 import express, { Application, Response, Request } from "express";
 
 import cors from "cors";
+import userRouter from "./Router/Userrouter";
 
 const app: Application = express();
 
@@ -8,6 +9,7 @@ const port: number = 1050;
 
 app.use(cors());
 app.use(express.json());
+app.use("api/users", userRouter);
 
 app.get("/", (req: Request, res: Response) => {
   try {
