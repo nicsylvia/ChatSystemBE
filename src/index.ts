@@ -7,7 +7,7 @@ import mongoose from "mongoose";
 
 const app: Application = express();
 
-const port: number = 1050;
+const port: number = 2050;
 
 const DBURL = "mongodb://0.0.0.0:27017/ChatSystem";
 
