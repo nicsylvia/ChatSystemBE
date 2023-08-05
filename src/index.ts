@@ -3,10 +3,13 @@ import express, { Application, Response, Request } from "express";
 import cors from "cors";
 import userRouter from "./Router/Userrouter";
 import FriendsRouter from "./Router/FriendsRoute";
+import mongoose from "mongoose";
 
 const app: Application = express();
 
 const port: number = 1050;
+
+const DBURL = "mongodb://0.0.0.0:27017/ChatSystem";
 
 app.use(cors());
 app.use(express.json());
@@ -26,6 +29,14 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 app.listen(port, () => {
-  console.log("");
-  console.log("Server is up and running on port", port);
+  mongoose
+    .connect(DBURL)
+    .then(() => {
+      console.log("");
+      console.log("Server is up and running on port", port);
+      console.log("Database is connected to server");
+    })
+    .catch((error) => {
+      console.log("An error occured in connecting DB", error);
+    });
 });
