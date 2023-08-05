@@ -39,7 +39,28 @@ export const GetChat = async (req: Request, res: Response) => {
     const { userID, friendID } = req.params;
 
     const chat = await ChatModels.create({
-      members: [userID, friendID],
+      members: { $in: userID },
+    });
+
+    return res.status(400).json({
+      message: "Chats established between Friends",
+      data: chat,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      message: "Error occured",
+      data: error,
+    });
+  }
+};
+export const GetSpecificChat = async (req: Request, res: Response) => {
+  try {
+    const { userID, friendID } = req.params;
+
+    const chat = await ChatModels.find({
+      members: {
+        $in: [userID, friendID],
+      },
     });
 
     return res.status(400).json({
